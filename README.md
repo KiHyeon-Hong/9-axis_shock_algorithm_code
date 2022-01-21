@@ -53,4 +53,33 @@ node server.js
 
 ## API
 
-- 
+### GET http://192.168.0.37:65001/shockLevel
+
+- 충격량 감지 기록 요청 API
+- 발생한 모든 충격량 데이터를 JSON 배열 형식으로 반환한다.
+
+- time: 충격 발생 시각
+- shocklevel: 0(충격 없음, DB에 기록되지 않음), 1(약한 충격), 2(강한 충격)
+- shockdirection: 충격 발생 방향 (0 ~ 359)
+- azimuthshockdirection: 방위각을 고려한 충격 발생 방향 (0 ~ 359)
+- shockvalue: 충격량 (단위: m/s2)
+- degree: 시설물 기울기 (0 ~ 90)
+- azimute: 센서가 놓여진 방위각 (0 ~ 359)
+- code: 상태 코드 (1: 정상, 0: 에러 발생)
+- message: 상태 메시지
+
+
+### DELETE http://192.168.0.37:65001/shockLevel
+
+- 충격량 감지 기록 삭제 요청 API
+- 충격량 데이터를 모두 삭제 요청한다.
+
+### GET http://192.168.0.37:65001/shockLog
+
+- 로그 요청 API
+- 요청된 로그 정보를 시간과 함께 반환한다.
+
+### DELETE http://192.168.0.37:65001/shockLog
+
+- 로그 삭제 요청 API
+- 로그 기록을 모두 삭제 요청한다.
