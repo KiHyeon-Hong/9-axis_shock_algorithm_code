@@ -38,8 +38,6 @@ create table Log(time datetime(3), log varchar(256));
 
 ## Usage
 
-- 
-
 ```bash
 git clone https://github.com/KiHyeon-Hong/9-axis_shock_algorithm_code.git Shock
 cd Shock
