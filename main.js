@@ -7,11 +7,14 @@ const Shock_level = require(__dirname + '/Shock_level.js');
 let config = fs.readFileSync(__dirname + '/files/config.json', 'utf8');
 config = JSON.parse(config);
 
+let dbconfig = fs.readFileSync(__dirname + '/files/dbconfig.json', 'utf8');
+dbconfig = JSON.parse(dbconfig);
+
 var connection = new MySql({
-  host: 'localhost',
-  user: 'root',
-  password: 'gachon654321',
-  database: '9axisdb',
+  host: dbconfig.host,
+  user: dbconfig.user,
+  password: dbconfig.password,
+  database: dbconfig.database,
 });
 
 const Blue = 29;
