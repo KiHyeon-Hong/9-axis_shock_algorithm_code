@@ -16,8 +16,38 @@
 
 ## Setting
 
+## files/config.json
 
+```json
+{ "delay": 20, "size": 50, "stop": 3 }
+```
+
+### files.dbconfig.json
+
+```json
+{ "host": "localhost", "user": "root", "password": "gachon654321", "database": "9axisdb" }
+```
+
+### mysql Query
+
+```sql
+create table ShockData(time datetime(3), shocklevel int, shockdirection int, azimuthshockdirection int, shockvalue float, degree int, azimuth int, code int, message varchar(256));
+create table Log(time datetime(3), log varchar(256));
+```
 
 ## Usage
+
+- 
+
+```bash
+git clone https://github.com/KiHyeon-Hong/9-axis_shock_algorithm_code.git Shock
+cd Shock
+npm install
+```
+
+```bash
+node main.js
+node server.js
+```
 
 ## API
