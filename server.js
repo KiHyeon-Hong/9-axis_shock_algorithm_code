@@ -39,5 +39,5 @@ app.delete('/shockLog', (req, res, next) => {
 });
 
 app.listen(65001, () => {
-  console.log('server running...');
+  console.log('Server running at 65001');
 });
