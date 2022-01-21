@@ -1,6 +1,7 @@
 # 9-axis_shock_algorithm_code
 
 - 9축센서(MPU9250) 기반의 시설물 충돌감지 알고리즘
+- https://github.com/KiHyeon-Hong/9-axis_shock_algorithm_paper
 
 ## Environment
 
@@ -51,3 +52,5 @@ node server.js
 ```
 
 ## API
+
+- 
