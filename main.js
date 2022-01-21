@@ -22,7 +22,7 @@ const Red = 28;
 const Green = 27;
 const Buzzer = 26;
 
-connection.query(`insert into Log values(now(3), 'Colision detection algorithm start')`);
+connection.query(`insert into Log values(now(3), 'Collision detection algorithm start')`);
 connection.query(`insert into Log values(now(3), 'gpio pin setting...')`);
 
 gpio.setup('wpi');
@@ -78,7 +78,7 @@ const ShockLevel = () => {
 
   if (returnLevel.shocklevel != 0) {
     connection.query(
-      `insert into ShockData values(now(3), ${returnLevel.shocklevel}, ${returnLevel.shockDirection}, ${returnLevel.azimuthShockDirection}, ${returnLevel.shockValue}, ${returnLevel.degree}, ${returnLevel.azimuth}, ${returnLevel.code}, ${returnLevel.message.length === 0? "Success": "Fail"})`
+      `insert into ShockData values(now(3), ${returnLevel.shocklevel}, ${returnLevel.shockDirection}, ${returnLevel.azimuthShockDirection}, ${returnLevel.shockValue}, ${returnLevel.degree}, ${returnLevel.azimuth}, ${returnLevel.code}, '${returnLevel.message.length === 0? "Success": "Fail"}')`
     );
     connection.query(`insert into Log values(now(3), 'Shock detection!')`);
     flag = config.stop;
@@ -123,7 +123,7 @@ const main = () => {
 
 process.on('SIGINT', function () {
   console.log('Exit...');
-  connection.query(`insert into Log values(now(3), 'Colision detection algorithm stop')`);
+  // connection.query(`insert into Log values(now(3), 'Collision detection algorithm stop')`);
 
   gpio.digitalWrite(Blue, 0);
   gpio.digitalWrite(Red, 0);

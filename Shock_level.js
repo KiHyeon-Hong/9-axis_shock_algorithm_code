@@ -1,3 +1,4 @@
+const fs = require('fs');
 const MySql = require('sync-mysql');
 
 let dbconfig = fs.readFileSync(__dirname + '/files/dbconfig.json', 'utf8');
