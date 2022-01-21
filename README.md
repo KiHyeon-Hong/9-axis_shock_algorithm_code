@@ -1,6 +1,9 @@
 # 9-axis_shock_algorithm_code
 
 - 9축센서(MPU9250) 기반의 시설물 충돌감지 알고리즘
+
+## Algorithm overview
+
 - https://github.com/KiHyeon-Hong/9-axis_shock_algorithm_paper
 
 ## Environment
@@ -18,6 +21,12 @@
 ## Setting
 
 ## files/config.json
+
+```bash
+git clone https://github.com/KiHyeon-Hong/9-axis_shock_algorithm_code.git Shock
+cd Shock
+npm install
+```
 
 ```json
 { "delay": 20, "size": 50, "stop": 3 }
@@ -37,12 +46,6 @@ create table Log(time datetime(3), log varchar(256));
 ```
 
 ## Usage
-
-```bash
-git clone https://github.com/KiHyeon-Hong/9-axis_shock_algorithm_code.git Shock
-cd Shock
-npm install
-```
 
 ```bash
 node main.js
