@@ -22,11 +22,17 @@ const Red = 28;
 const Green = 27;
 const Buzzer = 26;
 
+connection.query(`insert into Log values(now(3), 'Colision detection algorithm start')`);
+connection.query(`insert into Log values(now(3), 'gpio pin setting...')`);
+
 gpio.setup('wpi');
 gpio.pinMode(Blue, gpio.OUTPUT);
 gpio.pinMode(Red, gpio.OUTPUT);
 gpio.pinMode(Green, gpio.OUTPUT);
 gpio.pinMode(Buzzer, gpio.OUTPUT);
+
+connection.query(`insert into Log values(now(3), 'gpio pin setting success')`);
+connection.query(`insert into Log values(now(3), 'MPU9250 setting...')`);
 
 var mpu = new mpu9250({
   device: '/dev/i2c-1',
@@ -43,8 +49,12 @@ var mpu = new mpu9250({
 });
 mpu.initialize();
 
+connection.query(`insert into Log values(now(3), 'MPU9250 setting success')`);
+
 let flag = 0;
 var inputBuffer = new Array();
+
+connection.query(`insert into Log values(now(3), '9axis data buffer setting success')`);
 
 const ShockLevel = () => {
   let returnLevel = Shock_level.getShockLevel(0, inputBuffer);
@@ -68,8 +78,9 @@ const ShockLevel = () => {
 
   if (returnLevel.shocklevel != 0) {
     connection.query(
-      `insert into ShockData values(now(3), ${returnLevel.shocklevel}, ${returnLevel.shockDirection}, ${returnLevel.azimuthShockDirection}, ${returnLevel.shockValue}, ${returnLevel.degree}, ${returnLevel.azimuth}, ${returnLevel.code}, 'Success')`
+      `insert into ShockData values(now(3), ${returnLevel.shocklevel}, ${returnLevel.shockDirection}, ${returnLevel.azimuthShockDirection}, ${returnLevel.shockValue}, ${returnLevel.degree}, ${returnLevel.azimuth}, ${returnLevel.code}, ${returnLevel.message.length === 0? "Success": "Fail"})`
     );
+    connection.query(`insert into Log values(now(3), 'Shock detection!')`);
     flag = config.stop;
   }
 
@@ -112,6 +123,7 @@ const main = () => {
 
 process.on('SIGINT', function () {
   console.log('Exit...');
+  connection.query(`insert into Log values(now(3), 'Colision detection algorithm stop')`);
 
   gpio.digitalWrite(Blue, 0);
   gpio.digitalWrite(Red, 0);

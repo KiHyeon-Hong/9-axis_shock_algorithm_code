@@ -1,3 +1,15 @@
+const MySql = require('sync-mysql');
+
+let dbconfig = fs.readFileSync(__dirname + '/files/dbconfig.json', 'utf8');
+dbconfig = JSON.parse(dbconfig);
+
+var connection = new MySql({
+  host: dbconfig.host,
+  user: dbconfig.user,
+  password: dbconfig.password,
+  database: dbconfig.database,
+});
+
 const STRONG = 19;  // 강한 충격 임계값
 const WEAK = 11;    // 약한 충격 임계값
 const PI = 3.14159; // PI값 정의
@@ -219,6 +231,7 @@ exports.getShockLevel = function (reqID, inputData) {
   if (returnLevel.shocklevel != 0 && returnLevel.shocklevel != 1 && returnLevel.shocklevel != 2) {
     returnLevel.code = -1;
     returnLevel.message.push('ShockLevel Error');
+    connection.query(`insert into Log values(now(3), 'ShockLevel Error')`);
   }
 
   // 입력 데이터 움직임 측정
@@ -228,6 +241,7 @@ exports.getShockLevel = function (reqID, inputData) {
   if (gyro < 0) {
     returnLevel.code = -1;
     returnLevel.message.push('Gyro Error');
+    connection.query(`insert into Log values(now(3), 'Gyro Error')`);
   }
 
   // 입력 데이터의 기울기 측정
@@ -246,6 +260,7 @@ exports.getShockLevel = function (reqID, inputData) {
   if (returnLevel.shockDirection < 0 || returnLevel.shockDirection > 360) {
     returnLevel.code = -1;
     returnLevel.message.push('ShockDirection Error');
+    connection.query(`insert into Log values(now(3), 'ShockDirection Error')`);
   }
 
   // 센서의 방위각 측정
