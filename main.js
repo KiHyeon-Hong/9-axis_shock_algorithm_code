@@ -32,7 +32,7 @@ var mpu = new mpu9250({
   device: '/dev/i2c-1',
   address: 0x68,
   UpMagneto: true,
-  scaleValues: true, // 전처리
+  scaleValues: true,
   DEBUG: false,
   ak_address: 0x0c,
   GYRO_FS: 0,
