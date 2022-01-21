@@ -20,19 +20,16 @@ var connection = new MySql({
 
 app.get('/shockLevel', (req, res, next) => {
   const result = connection.query(`select * from ShockData`);
-  // connection.query(`insert into Log values(now(3), '/shockLevel')`);
   res.send(result);
 });
 
 app.delete('/shockLevel', (req, res, next) => {
   connection.query(`delete from ShockData`);
-  // connection.query(`insert into Log values(now(3), '/shockLevelDelete')`);
   res.send('Success');
 });
 
 app.get('/shockLog', (req, res, next) => {
   const result = connection.query(`select * from Log`);
-  // connection.query(`insert into Log values(now(3), '/shockLog')`);
   res.send(result);
 });
 

@@ -50,6 +50,7 @@ var mpu = new mpu9250({
 mpu.initialize();
 
 connection.query(`insert into Log values(now(3), 'MPU9250 setting success')`);
+connection.query(`insert into Log values(now(3), '9axis data buffer setting...')`);
 
 let flag = 0;
 var inputBuffer = new Array();
@@ -80,7 +81,7 @@ const ShockLevel = () => {
     connection.query(
       `insert into ShockData values(now(3), ${returnLevel.shocklevel}, ${returnLevel.shockDirection}, ${returnLevel.azimuthShockDirection}, ${returnLevel.shockValue}, ${returnLevel.degree}, ${returnLevel.azimuth}, ${returnLevel.code}, '${returnLevel.message.length === 0? "Success": "Fail"}')`
     );
-    connection.query(`insert into Log values(now(3), 'Shock detection!')`);
+    connection.query(`insert into Log values(now(3), 'Shock detection')`);
     flag = config.stop;
   }
 
@@ -123,7 +124,6 @@ const main = () => {
 
 process.on('SIGINT', function () {
   console.log('Exit...');
-  // connection.query(`insert into Log values(now(3), 'Collision detection algorithm stop')`);
 
   gpio.digitalWrite(Blue, 0);
   gpio.digitalWrite(Red, 0);
