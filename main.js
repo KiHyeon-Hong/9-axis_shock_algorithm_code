@@ -79,7 +79,9 @@ const ShockLevel = () => {
 
   if (returnLevel.shocklevel != 0) {
     connection.query(
-      `insert into ShockData values(now(3), ${returnLevel.shocklevel}, ${returnLevel.shockDirection}, ${returnLevel.azimuthShockDirection}, ${returnLevel.shockValue}, ${returnLevel.degree}, ${returnLevel.azimuth}, ${returnLevel.code}, '${returnLevel.message.length === 0? "Success": "Fail"}')`
+      `insert into ShockData values(now(3), ${returnLevel.shocklevel}, ${returnLevel.shockDirection}, ${returnLevel.azimuthShockDirection}, ${returnLevel.shockValue}, ${returnLevel.degree}, ${
+        returnLevel.azimuth
+      }, ${returnLevel.code}, '${returnLevel.message.length === 0 ? 'Success' : 'Fail'}')`
     );
     connection.query(`insert into Log values(now(3), 'Shock detection')`);
     flag = config.stop;

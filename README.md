@@ -66,7 +66,6 @@ node server.js
 - code: 상태 코드 (1: 정상, 0: 에러 발생)
 - message: 상태 메시지
 
-
 ### DELETE http://192.168.0.37:65001/shockLevel
 
 - 충격량 감지 기록 삭제 요청 API
