@@ -67,7 +67,6 @@ npm install
 #### files/dbconfig.json
 
 - 해당 파일은 존재하지 않으므로, 만들어야 한다.
-
 - 충돌감지 Database와 연동을 위해 작성하는 설정 파일
 - host: 기본 값 "localhost"
 - user: 기본 값 "root"
