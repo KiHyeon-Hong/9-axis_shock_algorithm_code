@@ -20,7 +20,7 @@ var connection = new MySql({
 const Blue = 29;
 const Red = 28;
 const Green = 27;
-const Buzzer = 26;
+const LED = 26;
 
 connection.query(`insert into Log values(now(3), 'Collision detection algorithm start')`);
 connection.query(`insert into Log values(now(3), 'gpio pin setting...')`);
@@ -29,7 +29,7 @@ gpio.setup('wpi');
 gpio.pinMode(Blue, gpio.OUTPUT);
 gpio.pinMode(Red, gpio.OUTPUT);
 gpio.pinMode(Green, gpio.OUTPUT);
-gpio.pinMode(Buzzer, gpio.OUTPUT);
+gpio.pinMode(LED, gpio.OUTPUT);
 
 connection.query(`insert into Log values(now(3), 'gpio pin setting success')`);
 connection.query(`insert into Log values(now(3), 'MPU9250 setting...')`);
@@ -64,17 +64,14 @@ const ShockLevel = () => {
     gpio.digitalWrite(Blue, 0);
     gpio.digitalWrite(Green, 0);
     gpio.digitalWrite(Red, 1);
-    gpio.digitalWrite(Buzzer, 1);
   } else if (returnLevel.shocklevel == 1) {
     gpio.digitalWrite(Blue, 0);
     gpio.digitalWrite(Green, 1);
     gpio.digitalWrite(Red, 0);
-    gpio.digitalWrite(Buzzer, 1);
   } else {
     gpio.digitalWrite(Blue, 1);
     gpio.digitalWrite(Green, 0);
     gpio.digitalWrite(Red, 0);
-    gpio.digitalWrite(Buzzer, 0);
   }
 
   if (returnLevel.shocklevel != 0) {
@@ -130,7 +127,7 @@ process.on('SIGINT', function () {
   gpio.digitalWrite(Blue, 0);
   gpio.digitalWrite(Red, 0);
   gpio.digitalWrite(Green, 0);
-  gpio.digitalWrite(Buzzer, 0);
+  gpio.digitalWrite(LED, 0);
 
   process.exit();
 });

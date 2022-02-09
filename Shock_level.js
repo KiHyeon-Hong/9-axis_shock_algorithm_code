@@ -1,6 +1,9 @@
 const fs = require('fs');
 const MySql = require('sync-mysql');
 
+let shockconfig = fs.readFileSync(__dirname + '/files/shockconfig.json', 'utf8');
+shockconfig = JSON.parse(shockconfig);
+
 let dbconfig = fs.readFileSync(__dirname + '/files/dbconfig.json', 'utf8');
 dbconfig = JSON.parse(dbconfig);
 
@@ -11,8 +14,8 @@ var connection = new MySql({
   database: dbconfig.database,
 });
 
-const STRONG = 19; // 강한 충격 임계값
-const WEAK = 11; // 약한 충격 임계값
+const STRONG = shockconfig.strong; // 강한 충격 임계값
+const WEAK = shockconfig.weak; // 약한 충격 임계값
 const PI = 3.14159; // PI값 정의
 const STOP = 10.0; // 센서가 정지해 있다고 판단하는 자이로 데이터 임계값
 const PERPENDICULAR = 10.0; // 지면과 수직이라고 가정하는 센서 기울기 임계값
