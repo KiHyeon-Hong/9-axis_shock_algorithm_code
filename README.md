@@ -216,7 +216,7 @@ Success
 Success
 ```
 
-### PUT http://192.168.1.103:65001/shockDirection?dir=y
+### PUT http://192.168.0.37:65001/shockDirection?dir=y
 
 - 9축 센서 방향 설정 API
 - 파라매터로 아래를 바라보고 있는 축을 설정한다.
