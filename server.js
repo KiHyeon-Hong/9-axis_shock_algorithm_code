@@ -65,7 +65,7 @@ app.delete('/shockLog', (req, res, next) => {
 });
 
 app.put('/shockLevel', (req, res, next) => {
-  shockconfig = { weak: req.query.weak, strong: req.query.strong };
+  shockconfig = { weak: parseInt(req.query.weak), strong: parseInt(req.query.strong) };
   shockconfig = JSON.stringify(shockconfig);
   fs.writeFileSync(__dirname + '/files/shockconfig.json', shockconfig, 'utf8');
 
