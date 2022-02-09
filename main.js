@@ -96,15 +96,39 @@ const main = () => {
   * y축이 아래일 때 y = 9, x = 0, z = 0, 아래 충격 z - 오른쪽 충격 x +
   * x축이 아래일 때, x = 9, y = 0, z = 0, 아래 충격 z - 오른쪽 충격 y -
   */
-  tempArr.acc_x = temp[0] * 10;
-  tempArr.acc_y = temp[1] * 10;
-  tempArr.acc_z = temp[2] * 10;
-  tempArr.vel_x = temp[3];
-  tempArr.vel_y = temp[4];
-  tempArr.vel_z = temp[5];
-  tempArr.mag_x = temp[6];
-  tempArr.mag_y = temp[7];
-  tempArr.mag_z = temp[8];
+  if(config.direction === "x") {
+    tempArr.acc_x = -temp[1] * 10;
+    tempArr.acc_y = -temp[2] * 10;
+    tempArr.acc_z = temp[0] * 10;
+    tempArr.vel_x = -temp[4];
+    tempArr.vel_y = -temp[5];
+    tempArr.vel_z = temp[3];
+    tempArr.mag_x = -temp[7];
+    tempArr.mag_y = -temp[8];
+    tempArr.mag_z = temp[6];
+  }
+  else if(config.direction === "y") {
+    tempArr.acc_x = temp[0] * 10;
+    tempArr.acc_y = -temp[2] * 10;
+    tempArr.acc_z = temp[1] * 10;
+    tempArr.vel_x = temp[3];
+    tempArr.vel_y = -temp[5];
+    tempArr.vel_z = temp[4];
+    tempArr.mag_x = temp[6];
+    tempArr.mag_y = -temp[8];
+    tempArr.mag_z = temp[7];
+  }
+  else if(config.direction === "z") {
+    tempArr.acc_x = temp[0] * 10;
+    tempArr.acc_y = temp[1] * 10;
+    tempArr.acc_z = temp[2] * 10;
+    tempArr.vel_x = temp[3];
+    tempArr.vel_y = temp[4];
+    tempArr.vel_z = temp[5];
+    tempArr.mag_x = temp[6];
+    tempArr.mag_y = temp[7];
+    tempArr.mag_z = temp[8];
+  }
 
   inputBuffer.push(tempArr);
   console.log(tempArr);
