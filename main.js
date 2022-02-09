@@ -84,13 +84,18 @@ const ShockLevel = () => {
     flag = config.stop;
   }
 
-  console.log(returnLevel);
+  // console.log(returnLevel);
 };
 
 const main = () => {
   let tempArr = new Object();
   let temp = mpu.getMotion9();
 
+  /*
+  * z축이 아래일 때, z = 9, x = 0, y = 0, 아래 충격 y + 오른쪽 충격 x +
+  * y축이 아래일 때 y = 9, x = 0, z = 0, 아래 충격 z - 오른쪽 충격 x +
+  * x축이 아래일 때, x = 9, y = 0, z = 0, 아래 충격 z - 오른쪽 충격 y -
+  */
   tempArr.acc_x = temp[0] * 10;
   tempArr.acc_y = temp[1] * 10;
   tempArr.acc_z = temp[2] * 10;
@@ -102,6 +107,7 @@ const main = () => {
   tempArr.mag_z = temp[8];
 
   inputBuffer.push(tempArr);
+  console.log(tempArr);
 
   if (inputBuffer.length >= config.size * 2) {
     if (flag == 0) {
