@@ -68,29 +68,34 @@ app.delete('/shockLog', (req, res, next) => {
 });
 
 app.put('/shockLevel', (req, res, next) => {
-  if((!isNaN(req.query.weak) && !isNaN(req.query.strong)) && (parseInt(req.query.weak) > 10 && parseInt(req.query.weak) < 999) && (parseInt(req.query.strong) > parseInt(req.query.weak) && parseInt(req.query.strong) < 999)) {
+  if (
+    !isNaN(req.query.weak) &&
+    !isNaN(req.query.strong) &&
+    parseInt(req.query.weak) > 10 &&
+    parseInt(req.query.weak) < 999 &&
+    parseInt(req.query.strong) > parseInt(req.query.weak) &&
+    parseInt(req.query.strong) < 999
+  ) {
     shockconfig = { weak: parseInt(req.query.weak), strong: parseInt(req.query.strong) };
     shockconfig = JSON.stringify(shockconfig);
     fs.writeFileSync(__dirname + '/files/shockconfig.json', shockconfig, 'utf8');
-  
+
     ledOn();
     res.send('Success');
-  }
-  else {
+  } else {
     res.send('fail');
   }
 });
 
 app.put('/shockDirection', (req, res, next) => {
-  if(req.query.dir === 'x' || req.query.dir === 'y' || req.query.dir === 'z') {
-    config = { "delay": 20, "size": 50, "stop": 3, "direction": req.query.dir }
+  if (req.query.dir === 'x' || req.query.dir === 'y' || req.query.dir === 'z') {
+    config = { delay: 20, size: 50, stop: 3, direction: req.query.dir };
     config = JSON.stringify(config);
     fs.writeFileSync(__dirname + '/files/config.json', config, 'utf8');
-  
+
     ledOn();
     res.send('Success');
-  }
-  else {
+  } else {
     res.send('fail');
   }
 });
