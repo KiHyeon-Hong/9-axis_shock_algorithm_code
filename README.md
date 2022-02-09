@@ -59,9 +59,10 @@ npm install
 - delay: 9축 데이터 측정 주기 (기본 값: 20ms)
 - size: 9축 데이터 버퍼 크기 (기본 값: 50ms), delay 20ms에 size 50ms이면 충돌감지 알고리즘은 1,000ms(20ms \* 50ms)마다 호출된다.
 - stop: 충돌이 발생하였다고 산출된 후, 일정 시간동안 발생하였다고 판단된 충돌은 충돌로 감지하지 않는다. (기본 값: 3회)
+- direction: 9츅 센서 중에서 지면과 수직인 축("x", "y", "z")
 
 ```json
-{ "delay": 20, "size": 50, "stop": 3 }
+{ "delay": 20, "size": 50, "stop": 3, "direction": "y" }
 ```
 
 #### files/dbconfig.json
@@ -75,6 +76,23 @@ npm install
 
 ```json
 { "host": "localhost", "user": "root", "password": "데이터베이스 비밀번호 입력", "database": "9axisdb" }
+```
+
+#### files/shockconfig.json
+
+- weak: 약한 충돌 기준 임계치 (기본값: 11)
+- strong: 강한 충돌 기준 임계치 (기본값 19)
+
+```json
+{ "weak": 11, "strong": 19 }
+```
+
+#### files/serverAddress.txt
+
+- 전원 on 시 자신의 공용 IP와 사설 IP를 알리는 기능 동작 시, 해당 기능을 받을 서버 주소와 URI
+
+```text
+http://localhost:65001/notification
 ```
 
 ## Usage
@@ -184,6 +202,15 @@ Success
 
 - 로그 삭제 요청 API
 - 로그 기록을 모두 삭제 요청한다.
+
+```text
+Success
+```
+
+### PUT http://192.168.0.37:65001/shockLevel?weak=11&strong=19
+
+- 약한 충돌, 강한 충돌 기준 설정 API
+- 파라매터로 약한 충돌과 강한 충돌의 임계치를 설정한다.
 
 ```text
 Success

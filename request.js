@@ -9,5 +9,4 @@ request.get({ url: 'https://api.ipify.org' }, function (_1, _2, body) {
   console.log('Virtual IP address > ' + ip.address());
 
   request.get({ url: `${addr}?pri=${ip.address()}&pub=${body}` }, function (_1, _2, body) {});
-
 });

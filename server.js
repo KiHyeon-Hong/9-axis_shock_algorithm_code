@@ -30,11 +30,11 @@ gpio.pinMode(LED, gpio.OUTPUT);
 const ledOn = () => {
   gpio.digitalWrite(LED, 1);
   setTimeout(ledOff, 3000);
-}
+};
 
 const ledOff = () => {
   gpio.digitalWrite(LED, 0);
-}
+};
 
 app.get('/shockLevel', (req, res, next) => {
   const result = connection.query(`select * from ShockData`);
@@ -65,7 +65,7 @@ app.delete('/shockLog', (req, res, next) => {
 });
 
 app.put('/shockLevel', (req, res, next) => {
-  shockconfig = { "weak": req.query.weak, "strong": req.query.strong }
+  shockconfig = { weak: req.query.weak, strong: req.query.strong };
   shockconfig = JSON.stringify(shockconfig);
   fs.writeFileSync(__dirname + '/files/shockconfig.json', shockconfig, 'utf8');
 

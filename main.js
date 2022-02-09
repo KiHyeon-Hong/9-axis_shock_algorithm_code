@@ -92,11 +92,11 @@ const main = () => {
   let temp = mpu.getMotion9();
 
   /*
-  * z축이 아래일 때, z = 9, x = 0, y = 0, 아래 충격 y + 오른쪽 충격 x +
-  * y축이 아래일 때 y = 9, x = 0, z = 0, 아래 충격 z - 오른쪽 충격 x +
-  * x축이 아래일 때, x = 9, y = 0, z = 0, 아래 충격 z - 오른쪽 충격 y -
-  */
-  if(config.direction === "x") {
+   * z축이 아래일 때, z = 9, x = 0, y = 0, 아래 충격 y + 오른쪽 충격 x +
+   * y축이 아래일 때 y = 9, x = 0, z = 0, 아래 충격 z - 오른쪽 충격 x +
+   * x축이 아래일 때, x = 9, y = 0, z = 0, 아래 충격 z - 오른쪽 충격 y -
+   */
+  if (config.direction === 'x') {
     tempArr.acc_x = -temp[1] * 10;
     tempArr.acc_y = -temp[2] * 10;
     tempArr.acc_z = temp[0] * 10;
@@ -106,8 +106,7 @@ const main = () => {
     tempArr.mag_x = -temp[7];
     tempArr.mag_y = -temp[8];
     tempArr.mag_z = temp[6];
-  }
-  else if(config.direction === "y") {
+  } else if (config.direction === 'y') {
     tempArr.acc_x = temp[0] * 10;
     tempArr.acc_y = -temp[2] * 10;
     tempArr.acc_z = temp[1] * 10;
@@ -117,8 +116,7 @@ const main = () => {
     tempArr.mag_x = temp[6];
     tempArr.mag_y = -temp[8];
     tempArr.mag_z = temp[7];
-  }
-  else if(config.direction === "z") {
+  } else if (config.direction === 'z') {
     tempArr.acc_x = temp[0] * 10;
     tempArr.acc_y = temp[1] * 10;
     tempArr.acc_z = temp[2] * 10;
