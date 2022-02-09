@@ -84,7 +84,7 @@ const ShockLevel = () => {
     flag = config.stop;
   }
 
-  // console.log(returnLevel);
+  console.log(returnLevel);
 };
 
 const main = () => {
@@ -129,7 +129,6 @@ const main = () => {
   }
 
   inputBuffer.push(tempArr);
-  console.log(tempArr);
 
   if (inputBuffer.length >= config.size * 2) {
     if (flag == 0) {
